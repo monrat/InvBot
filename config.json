@@ -1,0 +1,25 @@
+{
+  "camera": {
+    "device_id": 0,
+    "high_res": [1920, 1080],
+    "detect_res": [640, 480]
+  },
+  "detection": {
+    "motion_threshold": 1500,
+    "stable_frames_trigger": 15,
+    "capture_interval_sec": 3.0
+  },
+  "processing": {
+    "max_queue_size": 20,
+    "max_workers": 2
+  },
+  "model": {
+    "path": "./models/qwen-3b",
+    "prompt": "从图片中提取发票号码(invoice_number)、开票日期(date)、总金额(total_amount)，并以JSON格式返回。只返回JSON文本，不要包含任何其他说明。"
+  },
+  "output": {
+    "shots_dir": "shots",
+    "excel_file": "results.xlsx",
+    "log_file": "app.log"
+  }
+} 
