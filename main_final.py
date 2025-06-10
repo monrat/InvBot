@@ -18,7 +18,6 @@ import sys
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
-from queue import Queue
 from pathlib import Path
 
 # 导入自定义模块
@@ -49,7 +48,6 @@ class InvoiceBot:
         
         # 初始化组件
         self.exit_event = threading.Event()
-        self.task_queue = Queue(maxsize=self.config.max_queue_size)
         self.thread_pool = ThreadPoolExecutor(max_workers=self.config.max_workers)
         
         # 初始化模块
@@ -109,12 +107,9 @@ class InvoiceBot:
             self.stats["total_captures"] += 1
             self.logger.info(f"接收到新抓拍图片: {image_path}")
             
-            # 将任务加入队列
-            if not self.task_queue.full():
-                future = self.thread_pool.submit(self._process_image_task, image_path)
-                self.logger.debug(f"图片处理任务已提交: {image_path}")
-            else:
-                self.logger.warning("任务队列已满，跳过此次抓拍")
+            # 提交任务到线程池
+            self.thread_pool.submit(self._process_image_task, image_path)
+            self.logger.debug(f"图片处理任务已提交: {image_path}")
                 
         except Exception as e:
             self.logger.error(f"处理抓拍回调时出错: {e}")

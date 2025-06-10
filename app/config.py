@@ -74,10 +74,6 @@ class Config:
         return self.get('detection', 'capture_interval_sec')
     
     @property
-    def max_queue_size(self) -> int:
-        return self.get('processing', 'max_queue_size')
-    
-    @property
     def max_workers(self) -> int:
         return self.get('processing', 'max_workers')
     
