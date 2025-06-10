@@ -167,4 +167,9 @@ desktop.ini
 
 # 敏感配置（如果有的话）
 config.local.json
-.env.local 
+.env.local
+
+# 项目文档（内部使用，不上传）
+prd.md
+*.prd
+docs/internal/ 
