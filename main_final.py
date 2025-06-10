@@ -197,7 +197,8 @@ class InvoiceBot:
         # 等待线程池中的任务完成
         self.logger.info("等待处理任务完成...")
         try:
-            self.thread_pool.shutdown(wait=True, timeout=30)
+            # 等待所有任务完成并关闭线程池
+            self.thread_pool.shutdown(wait=True)
             self.logger.info("所有处理任务已完成")
         except Exception as e:
             self.logger.error(f"关闭线程池时出错: {e}")
