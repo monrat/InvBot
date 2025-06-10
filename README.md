@@ -123,7 +123,6 @@ git lfs clone https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct models/qwen-3b
 ### 处理配置
 ```json
 "processing": {
-  "max_queue_size": 20,        // 任务队列最大长度
   "max_workers": 2             // 线程池工作线程数
 }
 ```

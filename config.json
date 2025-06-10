@@ -10,7 +10,6 @@
     "capture_interval_sec": 3.0
   },
   "processing": {
-    "max_queue_size": 20,
     "max_workers": 2
   },
   "model": {
